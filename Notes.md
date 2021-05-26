@@ -7,7 +7,9 @@
 * packages are called toolbox
 * by default displays only 4 decimals in the result of the calculations
 	- `>> format short`
-  - `>> format long`
+    - `>> format long`
+    - `>> format short eng`	%engineering format that has at least 5 digits and a power that is a multiple of three
+    - `>> format long eng`	%engineering format that has 16 significant digits and a power that is a multiple of three
 * whos will give more details which include size, space allocation, and class of the variable
 	- `>> who`
 * multiple statements per line
@@ -22,6 +24,15 @@
 * `>> help Command`
 * `>> lookfor searchTerm`
 * `>> doc plot	%online documentation`
+
+* % - denotes a comment; specifies output format
+* ```
+	%{
+		This is a multiline comment
+	%}
+	```
+* ' - Single quote; creates string
+
 
 <H3> Mathematical functions </H3>
 
@@ -52,6 +63,9 @@
 - `i,j`	%The imaginary unit i = sqrt(−1)
 - `Inf`
 - `NaN`	%Not a number
+- `ans`	%Value of last variable (answer)
+- `eps`	%Floating-point relative accuracy
+
 
 * `0:pi/100:2*pi` yields a vector that
   – starts at 0,
@@ -115,6 +129,8 @@
 	* `A*B`
 	* `A^2`
 	* `α*A` or `A*α`
+* Vector cross product, `cross(A,B)`
+* Vector dot product, `dot(A,B)`
 * Inverse, `inv(A)`
 * Solving a system of linear equations by the process of Gaussian elimination, using the backslash (\)operator
 	- `>> x = A\b	% x = inv(A)*b`
@@ -123,6 +139,16 @@
 * Rank, Number of linearly independent rows or columns, `rank(A)`
 * Diagonal matrices and diagonals of a matrix, `diag(A)`
 * Eigenvalues and eigenvectors, `eig(A)`
+* Determine if input is empty matrix, `isempty(A)`
+* Test arrays for equality, `isequal(A,B)`
+* Number of dimensions, `ndims(A)`
+* Reshape, `reshape(A, new_size)`
+	* `reshape(a, [2,6])`
+* Sum of array elements, `sum(A)`
+	* `sum(X,'all') or sum(sum(X))`	%sums all elements of X
+	* `sum(X,DIM)`	%sums along the dimension DIM, DIM=1 means column-wise sum, DIM=2 means row-wise sum
+
+
 
 <H3> Array Operations </H3>
 	
@@ -133,4 +159,94 @@
 	.\	%Element-by-element left division
   ```
 
+<H3> Operator precedence </H3>
+
+* Parentheses ()
+* Transpose (.'), power (.^), matrix power (^)
+* Unary plus (+), unary minus (−), logical negation (∼)
+* Multiplication (.*), right division (./), left division (.\),
+* matrix multiplication (*), matrix right division (/),
+* matrix left division (\)
+* Addition (+), subtraction (−)
+* Colon operator (:)
+* Less than (<), less than or equal to (<=), greater (>),
+* greater than or equal to (>=), equal to (==), not equal to (∼=)
+* Element-wise AND, (&)
+* Element-wise OR, (|)
+
 <H3> Plots </H3>
+
+
+<H3> M-File </H3>
+
+* M-files can be scripts or functions
+
+<H5> M-File Scripts </H5>
+
+* A script file is an external file that contains a sequence of statements
+* All variables created in a script file are added to the workspace.
+	* Variables already existing in the workspace may be overwritten
+	* The execution of the script can be affected by the state variables in the workspace.
+
+<H5> M-File Functions </H5>
+
+* can accept arguments and can produce one or more outputs
+```
+function [outputs] = function_name(inputs)	(1: Function definition)
+% function_name(inputs) one line summary description of the program, displayed on requesting Help	(2: H1 line)
+% A more detailed description of the program (3: Help text)
+Actual_computations; (4: Function body)
+end
+```
+* functions are programs (or routines) that accept input arguments and return output arguments.
+* Each M-file function has its own area of workspace, separated from the MATLAB base workspace.
+* function name must begin with a letter, and must be no longer than than the maximum of 63 characters
+* the name of the function script (with the extension .m) should be same as the function name
+
+<H3> If/Else/Switch </H3>
+
+* `if ... end`
+* `if ... else ... end`
+* `if ... elseif ... else ... end`
+
+*
+```
+if expression	%no semicolon needed here
+statements
+end	%required
+```
+
+*
+```
+switch variable
+	case value1,
+			statements
+	case value2,
+			statements
+	otherwise,
+			statements
+end
+```
+* no break statement is needed with switch, by default every case ends with break, no fall-through happens here
+
+<H3> Loops </H3>
+<H5> `for...end` </H5>
+```
+for variable = expression
+statements
+end
+```
+* expression is a vector of the form i:s:j
+
+<H5> `while...end` </H5>
+```
+while expression
+statements
+end
+```
+
+* `break`
+* `continue` - to pass immediately to the next iteration of the loop
+* 'return`
+
+<H3>
