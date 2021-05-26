@@ -230,7 +230,8 @@ end
 * no break statement is needed with switch, by default every case ends with break, no fall-through happens here
 
 <H3> Loops </H3>
-<H5> `for...end` </H5>
+<H5> for...end </H5>
+
 ```
 for variable = expression
 statements
@@ -238,7 +239,8 @@ end
 ```
 * expression is a vector of the form i:s:j
 
-<H5> `while...end` </H5>
+<H5> while...end </H5>
+
 ```
 while expression
 statements
@@ -247,6 +249,4 @@ end
 
 * `break`
 * `continue` - to pass immediately to the next iteration of the loop
-* 'return`
-
-<H3>
+* `return`
